@@ -1,4 +1,5 @@
 package com.example.springproject.maneger;
+import com.example.springproject.dto.UserDto;
 import com.example.springproject.entity.User;
 import com.example.springproject.repository.UserRepository;
 import com.example.springproject.service.UserService;
@@ -13,15 +14,19 @@ public class UserManager implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public List<User> findAll() {
+    public List<UserDto> findAll() {
 
-        return userRepository.findAll();
+        return userRepository.findAll()
+                .stream().map(user -> new UserDto(user.getName(),user.getAge()))
+                .toList();
     }
 
     @Override
-    public User findById(int id) {
+    public UserDto findById(int id) {
 
-        return userRepository.findById(id).get();
+        return userRepository.findById(id)
+                .stream().map(user -> new UserDto(user.getName(),user.getAge()))
+                .findFirst().get();
     }
 
     @Override

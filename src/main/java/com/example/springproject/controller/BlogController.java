@@ -4,20 +4,17 @@ import com.example.springproject.maneger.BlogManager;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/blogs")
 public class BlogController {
-
     private final BlogManager blogManager;
-
     public BlogController(BlogManager blogManager) {
         this.blogManager = blogManager;
     }
-
-    @GetMapping("/blogs/{id}")
+    @GetMapping("/{id}")
     Blog findById(@PathVariable int id){
        return blogManager.findById(id);
     }
-    @PostMapping("/blogs")
+    @PostMapping("/add")
     void addBlog(Blog blog){
         blogManager.addBlog(blog);
     }

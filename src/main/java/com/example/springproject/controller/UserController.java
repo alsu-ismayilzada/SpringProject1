@@ -1,29 +1,30 @@
 package com.example.springproject.controller;
+import com.example.springproject.dto.UserDto;
 import com.example.springproject.entity.User;
 import com.example.springproject.maneger.UserManager;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/users")
 public class UserController {
    private final UserManager userManager;
     public UserController(UserManager userManager) {
         this.userManager = userManager;
     }
-    @GetMapping("/users")
-    List<User> findAll(){
+    @GetMapping("")
+    List<UserDto> findAll(){
         return userManager.findAll();
     }
-    @GetMapping("/users/{id}")
-    User findById(@PathVariable int id){
-        return userManager.findById(id-1);
+    @GetMapping("/{id}")
+    UserDto findById(@PathVariable int id){
+        return userManager.findById(id);
     }
-    @PostMapping("/user")
+    @PostMapping("/add")
     void addUser(@RequestBody User user){
         userManager.addUser(user);
     }
     @DeleteMapping("/delete/{id}")
     void deleteUser(@PathVariable int id){
-        userManager.deleteUser(id-1);
+        userManager.deleteUser(id);
     }
 }

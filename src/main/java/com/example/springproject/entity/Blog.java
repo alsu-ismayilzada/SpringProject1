@@ -1,26 +1,26 @@
 package com.example.springproject.entity;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
-
 @Data
-@Entity
+@Entity(name="blogs")
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Blog {
     @Id
+    @GeneratedValue
     Integer id;
     @Column(name="name")
     String name;
-    @Column(name="author")
-    String author;
     @Column(name="definition")
     String definition;
+    @Column(name="author")
+    String author;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="user_id",referencedColumnName = "id")
+    User user;
+
 }

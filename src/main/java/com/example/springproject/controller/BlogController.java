@@ -1,4 +1,5 @@
 package com.example.springproject.controller;
+import com.example.springproject.dto.BlogDto;
 import com.example.springproject.entity.Blog;
 import com.example.springproject.maneger.BlogManager;
 import org.springframework.web.bind.annotation.*;
@@ -11,14 +12,14 @@ public class BlogController {
         this.blogManager = blogManager;
     }
     @GetMapping("/{id}")
-    Blog findById(@PathVariable int id){
+    BlogDto findById(@PathVariable int id){
        return blogManager.findById(id);
     }
     @PostMapping("/add")
-    void addBlog(Blog blog){
+    void addBlog(@RequestBody Blog blog){
         blogManager.addBlog(blog);
     }
-    @DeleteMapping("/blogs/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     void deleteBlog(@PathVariable int id){
         blogManager.deleteBlog(id);
     }

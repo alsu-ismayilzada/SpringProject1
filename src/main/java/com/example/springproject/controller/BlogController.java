@@ -16,7 +16,7 @@ public class BlogController {
        return blogManager.findById(id);
     }
     @PostMapping("/add")
-    void addBlog(@RequestBody Blog blog){
+    void addBlog(@RequestBody BlogDto blog){
         blogManager.addBlog(blog);
     }
     @DeleteMapping("/delete/{id}")

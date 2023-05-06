@@ -2,6 +2,7 @@ package com.example.springproject.maneger;
 import com.example.springproject.dto.BlogDto;
 import com.example.springproject.entity.Blog;
 import com.example.springproject.exception.BlogNotFound;
+import com.example.springproject.mapper.BlogMapper;
 import com.example.springproject.repository.BlogRepository;
 import com.example.springproject.service.BlogService;
 import lombok.AllArgsConstructor;
@@ -12,16 +13,17 @@ import org.springframework.stereotype.Component;
 public class BlogManager implements BlogService {
 
     private BlogRepository blogRepository;
+    private final BlogMapper blogMapper;
     @Override
     public BlogDto findById(int id) {
         return blogRepository.findById(id)
-                .stream().map(blog -> new BlogDto(blog.getName(),blog.getDefinition(),blog.getAuthor(),blog.getUser()))
+                .stream().map(blogMapper::toBlogDto)
                 .findFirst().orElseThrow(()->new BlogNotFound("Blog tapilmadi!!"));
     }
 
     @Override
-    public void addBlog(Blog blog) {
-        blogRepository.save(blog);
+    public void addBlog(BlogDto blog) {
+        blogRepository.save(blogMapper.toBlogEntity(blog));
     }
 
     @Override

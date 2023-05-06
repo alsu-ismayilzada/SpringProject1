@@ -20,7 +20,7 @@ public class UserController {
         return userManager.findById(id);
     }
     @PostMapping("/add")
-    void addUser(@RequestBody User user){
+    void addUser(@RequestBody UserDto user){
         userManager.addUser(user);
     }
     @DeleteMapping("/delete/{id}")

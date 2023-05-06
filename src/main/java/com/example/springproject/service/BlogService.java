@@ -7,6 +7,6 @@ import org.springframework.stereotype.Component;
 public interface BlogService {
 
     BlogDto findById(int id);
-    void addBlog(Blog blog);
+    void addBlog(BlogDto blog);
     void deleteBlog(int id);
 }

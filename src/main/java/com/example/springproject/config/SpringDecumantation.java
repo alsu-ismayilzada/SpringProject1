@@ -16,7 +16,8 @@ public class SpringDecumantation {
         return OpenAPI().info(
                 new info()
                         .title("Alsu Ismayilzade terefinden yazilib")
-                        .version()
+                        .version("0.0.1")
+
         )
     }
 

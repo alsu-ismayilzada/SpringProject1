@@ -11,11 +11,14 @@ import java.util.List;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
+
     @Column(name="name")
     String name;
+
     @Column(name="age")
     int age;
 

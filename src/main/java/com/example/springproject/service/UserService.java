@@ -6,7 +6,7 @@ import java.util.List;
 @Component
 public interface UserService {
 
-    List<UserDto> findAll();
+    List<UserDto> findAll(int page, int count);
     UserDto findById(int id);
     void addUser(UserDto user);
     void deleteUser(int id);

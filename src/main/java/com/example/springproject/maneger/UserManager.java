@@ -6,6 +6,8 @@ import com.example.springproject.mapper.UserMapper;
 import com.example.springproject.repository.UserRepository;
 import com.example.springproject.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 import java.util.List;
 @Component
@@ -15,9 +17,12 @@ public class UserManager implements UserService {
     private UserRepository userRepository;
     private final UserMapper userMapper;
     @Override
-    public List<UserDto> findAll() {
+    public List<UserDto> findAll(int page, int count) {
 
-        return userRepository.findAll()
+        Page<User> pageableUserList = userRepository.findAll(PageRequest.of(page, count));
+
+
+        return pageableUserList
                 .stream().map(userMapper::toUserDto)
                 .toList();
     }

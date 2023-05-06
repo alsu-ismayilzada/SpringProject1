@@ -9,13 +9,17 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Blog {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
+
     @Column(name="name")
     String name;
+
     @Column(name="definition")
     String definition;
+
     @Column(name="author")
     String author;
 

@@ -12,11 +12,13 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class CustamizedBlogException extends ResponseEntityExceptionHandler {
 
+
+
     @ExceptionHandler(Exception.class)
-    public final ResponseEntity<Object> handleeException(Exception ex, WebRequest request) throws Exception {
+    public final ResponseEntity<Object> handleeException(Exception ex, WebRequest request) {
         BlogExceptionDetails blogExceptionDetails = new BlogExceptionDetails(LocalDateTime.now(),
                 ex.getMessage(),
                 request.getDescription(false));
-        return new ResponseEntity(blogExceptionDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<Object>(blogExceptionDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

@@ -4,7 +4,7 @@ import com.example.springproject.dto.BlogDto;
 import com.example.springproject.entity.Blog;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface BlogMapper {
 
     BlogDto toBlogDto(Blog blog);

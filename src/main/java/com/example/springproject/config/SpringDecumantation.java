@@ -2,10 +2,10 @@ package com.example.springproject.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static java.awt.SystemColor.info;
 
 @Configuration
 @OpenAPIDefinition
@@ -13,12 +13,11 @@ public class SpringDecumantation {
 
     @Bean
     public OpenAPI openAPI(){
-        return OpenAPI().info(
-                new info()
+        return new OpenAPI().info(
+                new Info()
                         .title("Alsu Ismayilzade terefinden yazilib")
                         .version("0.0.1")
-
-        )
+        );
     }
 
 }

@@ -1,7 +1,7 @@
 package com.example.springproject.maneger;
 import com.example.springproject.dto.UserDto;
 import com.example.springproject.entity.User;
-import com.example.springproject.exception.UserNotFound;
+import com.example.springproject.exception.NotFound;
 import com.example.springproject.mapper.UserMapper;
 import com.example.springproject.repository.UserRepository;
 import com.example.springproject.service.UserService;
@@ -21,7 +21,6 @@ public class UserManager implements UserService {
 
         Page<User> pageableUserList = userRepository.findAll(PageRequest.of(page, count));
 
-
         return pageableUserList
                 .stream().map(userMapper::toUserDto)
                 .toList();
@@ -31,7 +30,7 @@ public class UserManager implements UserService {
 
         return userRepository.findById(id)
                 .stream().map(userMapper::toUserDto)
-                .findFirst().orElseThrow(()->new UserNotFound("User tapilmadi!!"));
+                .findFirst().orElseThrow(()->new NotFound("User tapilmadi!!"));
     }
 
 

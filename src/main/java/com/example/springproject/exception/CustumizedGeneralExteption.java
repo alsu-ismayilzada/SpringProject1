@@ -9,13 +9,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.time.LocalDateTime;
 @ControllerAdvice
-public class CustumizedUserExteption extends ResponseEntityExceptionHandler {
+public class CustumizedGeneralExteption extends ResponseEntityExceptionHandler {
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> handleeException(Exception ex, WebRequest request) throws Exception{
-         UserExceptionDetails userExceptionDetails= new UserExceptionDetails(LocalDateTime.now(),
+         GeneralExceptionDetails exceptionDetails= new GeneralExceptionDetails(LocalDateTime.now(),
                  ex.getMessage(),
                  request.getDescription(false));
-            return new ResponseEntity(userExceptionDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity(exceptionDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

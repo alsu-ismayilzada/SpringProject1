@@ -1,7 +1,6 @@
 package com.example.springproject.maneger;
 import com.example.springproject.dto.BlogDto;
-import com.example.springproject.entity.Blog;
-import com.example.springproject.exception.BlogNotFound;
+import com.example.springproject.exception.NotFound;
 import com.example.springproject.mapper.BlogMapper;
 import com.example.springproject.repository.BlogRepository;
 import com.example.springproject.service.BlogService;
@@ -18,7 +17,7 @@ public class BlogManager implements BlogService {
     public BlogDto findById(int id) {
         return blogRepository.findById(id)
                 .stream().map(blogMapper::toBlogDto)
-                .findFirst().orElseThrow(()->new BlogNotFound("Blog tapilmadi!!"));
+                .findFirst().orElseThrow(()->new NotFound("Blog tapilmadi!!"));
     }
 
     @Override

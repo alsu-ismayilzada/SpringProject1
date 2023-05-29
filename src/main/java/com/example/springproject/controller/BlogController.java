@@ -19,7 +19,7 @@ public class BlogController {
     void addBlog(@RequestBody BlogDto blog){
         blogManager.addBlog(blog);
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     void deleteBlog(@PathVariable int id){
         blogManager.deleteBlog(id);
     }
